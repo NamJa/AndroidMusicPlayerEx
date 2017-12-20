@@ -1,10 +1,14 @@
 package com.example.ddori.mymusicapp;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.ddori.mymusicapp.databinding.ActivityMainBinding;
 
@@ -33,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.recyclerView.setAdapter(adapter);
         mainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mainBinding.recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mainBinding.recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getApplicationContext(), PlayMusicActivity.class);
+                intent.putExtra("musicName", recyclerItems.get(position).getName());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                Toast.makeText(getApplicationContext(), position+"번 째 아이템 롱 클릭", Toast.LENGTH_SHORT).show();
+            }
+        }));
         setData();
     }
 
