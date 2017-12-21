@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
-    ArrayList<RecyclerItem> recyclerItems;
+    ArrayList<MusicData> musicData;
 
-    public RecyclerAdapter(ArrayList<RecyclerItem> items)
+    public RecyclerAdapter(ArrayList<MusicData> items)
     {
-        recyclerItems = items;
+        musicData = items;
     }
 
     @Override
@@ -30,12 +30,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position)
     {
-        holder.nameTv.setText(recyclerItems.get(position).getName());
+        holder.nameTv.setText(musicData.get(position).getTitle());
     }
     @Override
     public int getItemCount()
     {
-        return recyclerItems.size();
+        return musicData.size();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
