@@ -7,12 +7,74 @@
         android:id="@+id/playMusicRelative"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/albumArtImgView"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"/>
         <TextView
-            android:id="@+id/txtView"
+            android:id="@+id/musicNameTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="playMusicActivity 실행"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/albumArtImgView"
+            android:text="음악 이름"/>
 
+        <ImageView
+            android:id="@+id/playMusicImgView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/musicNameTxtView"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/play"/>
+        <ImageView
+            android:id="@+id/previewImgView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/musicNameTxtView"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/playMusicImgView"
+            android:src="@drawable/previous"/>
+        <ImageView
+            android:id="@+id/nextImgView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/musicNameTxtView"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/playMusicImgView"
+            android:src="@drawable/next"/>
+        <SeekBar
+            android:id="@+id/musicSeekBar"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/previewImgView"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/musicSeekBar"
+            android:layout_centerHorizontal="true"
+            android:text="/"
+            android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/musicDurTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/musicSeekBar"
+            android:layout_toLeftOf="@id/slash"
+            android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/musicTotDurTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/musicSeekBar"
+            android:layout_toRightOf="@id/slash"/>
     </RelativeLayout>
 </layout>
 

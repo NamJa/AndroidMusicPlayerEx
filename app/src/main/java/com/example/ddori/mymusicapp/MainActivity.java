@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), PlayMusicActivity.class);
                 intent.putExtra("musicName", musicList.get(position).getTitle());
+                intent.putExtra("position", position);
+                intent.putExtra("playlist", musicList);
                 startActivity(intent);
             }
 
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             musicData.setId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID)));
             musicData.setAlbumId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)));
             musicData.setTitle(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)));
-            System.out.println(musicData.getTitle());
+            Uri musicURI = Uri.withAppendedPath(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, ""+musicData.getId());
             musicData.setArtist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)));
             musicList.add(musicData);
 
