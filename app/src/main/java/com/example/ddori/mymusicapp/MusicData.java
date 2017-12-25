@@ -11,6 +11,7 @@ public class MusicData implements Serializable{
     private String albumId;
     private String title;
     private String artist;
+    private String durTime;
 
     public MusicData() {
 
@@ -26,6 +27,7 @@ public class MusicData implements Serializable{
     public String getAlbumId() {return albumId;}
     public String getTitle() {return title;}
     public String getArtist() {return artist;}
+    public String getDurTime() {return durTime;}
 
     public void setId(String id)
     {
@@ -43,4 +45,5 @@ public class MusicData implements Serializable{
     {
         this.artist = artist;
     }
+    public void setDurTime(String durTime) {this.durTime = durTime;}
 }

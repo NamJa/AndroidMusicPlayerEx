@@ -52,6 +52,7 @@ public class PlayMusicActivity extends AppCompatActivity{
                 playMusicBinding.playMusicImgView.setVisibility(View.GONE);
                 mediaplayer.seekTo(mediaplayer.getCurrentPosition());
                 mediaplayer.start();
+
             }
         });
 
@@ -105,7 +106,11 @@ public class PlayMusicActivity extends AppCompatActivity{
                 } else {
                     playMusicBinding.musicDurTxtView.setText(m + ":" + s);
                 }
-                playMusicBinding.musicTotDurTxtView.setText(totM + ":" + totS);
+                if (totS < 10)
+                    playMusicBinding.musicTotDurTxtView.setText(totM + ":0" + totS);
+                else {
+                    playMusicBinding.musicTotDurTxtView.setText(totM + ":" + totS);
+                }
             }
 
             @Override
@@ -130,8 +135,8 @@ public class PlayMusicActivity extends AppCompatActivity{
                 }
             }
         });
-
     }
+
 
     public void playMusic(MusicData musicData)
     {
@@ -145,7 +150,6 @@ public class PlayMusicActivity extends AppCompatActivity{
             mediaplayer.prepare();
             mediaplayer.start();
             playMusicBinding.musicSeekBar.setMax(mediaplayer.getDuration());
-            System.out.println(mediaplayer.getDuration()/1000);
             if(mediaplayer.isPlaying())
             {
                 playMusicBinding.playMusicImgView.setVisibility(View.GONE);
@@ -188,7 +192,7 @@ public class PlayMusicActivity extends AppCompatActivity{
             {
                 try
                 {
-                    Thread.sleep(10);
+                    Thread.sleep(500);
                     if(mediaplayer != null) {
                         playMusicBinding.musicSeekBar.setProgress(mediaplayer.getCurrentPosition());
                     }

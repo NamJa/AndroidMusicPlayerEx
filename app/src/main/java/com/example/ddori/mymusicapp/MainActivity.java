@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,6 +26,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     public final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     private static final int LAYOUT = R.layout.activity_main;
+
+    public static String MAIN_ACTION = "com.ddori.foregroundservice.action.main";
+    public static String PLAY_ACTION= "com.ddori.foregroundservice.action.play";
+    public static String NEXTPLAY_ACTION = "com.ddori.foregroundservice.action.nextplay";
+    public static String PREVPLAY_ACTION = "com.ddori.foregroundservice.action.prevplay";
+    public static String STARTFOREGROUND_ACTION = "com.ddori.foregroundservice.action.startforeground";
+    public static String STOPFOREGROUND_ACTION = "com.ddori.foregroundservice.action.stopforeground";
+
     private ActivityMainBinding mainBinding;
     private RecyclerView.Adapter adapter;
     public ArrayList<MusicData> musicList;
@@ -110,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainBinding.recyclerView.setHasFixedSize(true);
 
-        adapter = new RecyclerAdapter(musicList);
+        adapter = new RecyclerAdapter(musicList, this);
         mainBinding.recyclerView.setAdapter(adapter);
         mainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -118,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), PlayMusicActivity.class);
+
                 intent.putExtra("musicName", musicList.get(position).getTitle());
                 intent.putExtra("position", position);
                 intent.putExtra("playlist", musicList);
@@ -126,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), position + "번 째 아이템 롱 클릭", Toast.LENGTH_SHORT).show();
             }
         }));
 
@@ -146,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
             musicData.setId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID)));
             musicData.setAlbumId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)));
             musicData.setTitle(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)));
-            Uri musicURI = Uri.withAppendedPath(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, ""+musicData.getId());
             musicData.setArtist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)));
             musicList.add(musicData);
 
