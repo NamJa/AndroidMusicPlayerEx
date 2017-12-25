@@ -33,3 +33,10 @@ https://github.com/NamJa/AndroidMusicPlayerEx/commit/fd5486fe0ec6de862ff7cb02e77
 ui 구성 후, mediaStore에서 오디오 파일의 아이디를 매칭시켜 재생하는 방식으로 구현되었으며, 재생 시간 업데이트 같은 경우에는 asyncTask, Thread 방식으로 시도하다가 에러가 발생하여 seekbar 클래스 내의 필수 구현 함수인 onProgressChanged()에서 구현하였다.
 
 After ui configuration, this function is implemented by matching id of mediaStore audio file and playing. In the case of update of playing time, it is implemented in onProgressChanged (), which is a mandatory implementation function in seekbar class because error occurs while trying asyncTask, Thread method.
+
+## Load Album art on RecyclerView
+https://github.com/NamJa/AndroidMusicPlayerEx/commit/534f9617224a44bc119b7059e9165e84349d445f
+
+recyclerview adapter 소스에 앨범아트를 로딩시키는 기능을 Glide라는 오픈 소스를 사용하여 구현하였다.
+
+Loading albumart on RecyclerView function is implemented with Called open source name 'Glide'
